@@ -1,0 +1,25 @@
+
+@mixin forms(){
+  form{
+    display: flex;
+    flex-direction: column;
+    width: 25vw;
+    margin: 0 auto;
+
+    .mat-mdc-form-field:has(.mat-mdc-form-field-error) {
+      margin-bottom: 10px;
+    }
+
+    .mat-mdc-form-field-infix {
+      display: flex;
+      button {
+        height: 24px;
+        width: 24px;
+        font-size: 24px;
+        position: absolute;
+        top: 10%;
+        right: 0;
+      }
+    }
+  }
+}

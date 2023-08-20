@@ -1,0 +1,46 @@
+
+<div class="form__wrapper">
+  <form class="form" [formGroup]="form">
+    <mat-form-field [appearance]="'outline'">
+      <mat-label>
+        Логин
+      </mat-label>
+      <input matInput [formControlName]="'login'">
+      <app-error-text
+        *ngIf = "form.invalid && form.controls['login'].touched && form.controls['login'].errors"
+        [errors]="form.controls['login'].errors"
+      ></app-error-text>
+    </mat-form-field>
+    <mat-form-field [appearance]="'outline'">
+      <mat-label>
+        Пароль
+      </mat-label>
+      <input
+        matInput
+        [formControlName]="'password'"
+        #passwordInput
+      >
+      <button
+        mat-icon-button
+        type="button"
+        *ngLet="(passwordInput.type === 'text' ? 'password' : 'text') as alternativePassVisibility"
+        (click)="passwordInput.type = alternativePassVisibility"
+      >
+        <mat-icon>{{alternativePassVisibility === 'password' ? 'visibility' : 'visibility_off'}}</mat-icon>
+      </button>
+      <app-error-text
+        *ngIf = "form.invalid && form.controls['password'].touched && form.controls['password'].errors"
+        [errors]="form.controls['password'].errors"
+      ></app-error-text>
+    </mat-form-field>
+
+    <button
+      mat-flat-button
+      color="primary"
+      type="submit"
+      [disabled] = "!form.touched || form.invalid"
+      (click) = "login()"
+    >Войти</button>
+    <a class="form__registration" routerLink="../registration"> Регистрация </a>
+  </form>
+</div>

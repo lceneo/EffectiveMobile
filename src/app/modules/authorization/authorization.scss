@@ -1,0 +1,14 @@
+.form{
+  &__wrapper {
+    display: flex;
+    height: 80vh;
+    justify-items: center;
+    align-items: center;
+    .form {
+      &__registration {
+        align-self: center;
+        margin-top: 10px;
+      }
+    }
+  }
+}
