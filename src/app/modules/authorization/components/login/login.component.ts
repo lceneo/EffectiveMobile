@@ -24,7 +24,6 @@ export class LoginComponent{
 
   protected login() {
     if (this.authS.login(this.form.value as IAuthorizationCredentials)) {
-      console.log(this.router.routerState.root)
       this.router.navigate(['main'], {relativeTo: null})
     }
   }

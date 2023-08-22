@@ -1,0 +1,14 @@
+.toolbar{
+  padding-right: 30px;
+  display: flex;
+  justify-content: flex-end;
+  .nav{
+    &__link{
+      font-size: 18px;
+      text-decoration: underline;
+    }
+    &__link:hover{
+      cursor: pointer;
+    }
+  }
+}

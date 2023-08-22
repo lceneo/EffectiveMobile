@@ -1,20 +1,50 @@
 
-<div *ngFor="let post of posts$ | async | getPostsByPage: currentPage : postsPerPage | async">
-  {{post | json}}
-</div>
+<ng-container
+  *ngLet="posts$ | async | getPostsByPage: currentPage : postsPerPage | async as posts"
+>
+  <div class="wrapper"
+    *ngIf = "posts && posts.length; else loadingTemplate">
+    <ul class="posts__list">
+      <li class="posts__item"
+        [routerLink]="['../', 'posts', post.id]"
+        *ngFor="let post of posts$ | async | getPostsByPage: currentPage : postsPerPage | async"
+      >
+      <mat-card>
+        <mat-card-header>
+          <mat-card-title-group>
+            <mat-card-title>{{post.title}}</mat-card-title>
+            <img mat-card-md-image [ngSrc]="post.photoURL" [width]="300" [height]="300"  alt="Image of a Shiba Inu">
+          </mat-card-title-group>
+        </mat-card-header>
+        <mat-card-content>
+          {{post.body}}
+        </mat-card-content>
+      </mat-card>
+      </li>
+    </ul>
+    <section #paginationControl
+             class="pagination"
+    >
+      <button
+        mat-icon-button
+        (click)="changePage(currentPage - 1)"
+        [disabled] = 'currentPage === 1'
+      >
+        <mat-icon>keyboard_arrow_left</mat-icon>
+      </button>
+      <p>{{currentPage}}</p>
+      <button mat-icon-button
+       (click)="changePage(currentPage + 1)"
+      >
+        <mat-icon>keyboard_arrow_right</mat-icon>
+      </button>
+    </section>
+  </div>
 
-<section #paginationControl>
-  <button
-    mat-icon-button
-    (click)="changePage(currentPage - 1)"
-    [disabled] = 'currentPage === 1'
-  >
-    <mat-icon>keyboard_arrow_left</mat-icon>
-  </button>
-  <p>{{currentPage}}</p>
-  <button mat-icon-button
-   (click)="changePage(currentPage + 1)"
-  >
-    <mat-icon>keyboard_arrow_right</mat-icon>
-  </button>
-</section>
+  <ng-template
+  #loadingTemplate>
+    <div class="spinner__wrapper">
+      <mat-spinner></mat-spinner>
+    </div>
+  </ng-template>
+</ng-container>

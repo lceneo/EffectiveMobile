@@ -1,1 +1,29 @@
+
+<mat-divider></mat-divider>
+<section class="toolbar">
+  <button mat-icon-button
+  [matMenuTriggerFor]="settingsMenu">
+    <mat-icon
+    [svgIcon]="'more-alt'"></mat-icon>
+  </button>
+  <nav class="nav">
+    <button *ngIf="isAuthorized$ | async" mat-icon-button class="nav__link" (click)="unauthorize()">
+      <mat-icon>exit_to_app</mat-icon>
+    </button>
+  </nav>
+</section>
+<mat-divider></mat-divider>
 <router-outlet></router-outlet>
+
+<mat-menu #settingsMenu>
+  <ng-template matMenuContent>
+    <button mat-menu-item [matMenuTriggerFor]="languageMenu">language</button>
+  </ng-template>
+</mat-menu>
+
+<mat-menu #languageMenu>
+  <ng-template matMenuContent>
+    <button mat-menu-item>ru</button>
+    <button mat-menu-item>en</button>
+  </ng-template>
+</mat-menu>

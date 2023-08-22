@@ -12,7 +12,6 @@ export class GetPostsByPagePipe implements PipeTransform {
   ) {
   }
   transform(posts: IPost[] | null, page: number, postsPerPage: number): Observable<IPost[]> {
-    console.log(15)
     if (posts) {
       const firstPostIndex = posts.findIndex(p => p.id === (page - 1) * postsPerPage + 1);
       return firstPostIndex >= 0 ? of(posts.slice(firstPostIndex, firstPostIndex + postsPerPage)) : this.postsS.loadPostsForNewPage$(page, postsPerPage);

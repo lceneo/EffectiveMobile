@@ -36,7 +36,7 @@
       [formControl]="control"
     >
     <app-error-text
-      *ngIf = "form.invalid && control.touched && control.errors"
+      *ngIf = "form.invalid && !!control.value && control.errors"
       [errors]="control.errors"
     ></app-error-text>
   </mat-form-field>

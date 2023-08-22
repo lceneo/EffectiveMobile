@@ -29,6 +29,9 @@ export class ErrorTextComponent {
         case 'pattern':
           this.errorsText += `errors.pattern`
           break;
+        case 'mismatchedPasswords':
+          this.errorsText += `errors.mismatchedPasswords`
+          break;
       }
     })
   }

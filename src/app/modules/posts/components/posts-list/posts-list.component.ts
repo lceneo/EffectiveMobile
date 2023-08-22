@@ -1,6 +1,6 @@
 import {ChangeDetectionStrategy, Component, OnInit} from '@angular/core';
 import {IPost, PostsService} from "../../services/posts.service";
-import {Router} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import {Observable} from "rxjs";
 
 @Component({
@@ -9,9 +9,10 @@ import {Observable} from "rxjs";
   styleUrls: ['./posts-list.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class PostsListComponent implements OnInit{
+export class PostsListComponent{
   constructor(
     private postsS: PostsService,
+    private route: ActivatedRoute,
     private router: Router
   ) {
     this.router.routerState.root.queryParams.subscribe(params => {
@@ -23,9 +24,6 @@ export class PostsListComponent implements OnInit{
   protected currentPage: number = 1;
   protected readonly postsPerPage = 10;
 
-  ngOnInit() {
-    console.log('init')
-  }
 
   protected changePage(newPage: number) {
     this.router.navigate([], {

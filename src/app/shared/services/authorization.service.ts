@@ -28,6 +28,11 @@ export class AuthorizationService {
     localStorage.setItem('savedCredentials', JSON.stringify(credentials));
   }
 
+  signOut() {
+    localStorage.removeItem('savedCredentials');
+    this.isAuthorized$.next(false);
+  }
+
   private getSavedCredentials(){
     const credentials = localStorage.getItem('savedCredentials');
     return credentials ? JSON.parse(credentials) : null;

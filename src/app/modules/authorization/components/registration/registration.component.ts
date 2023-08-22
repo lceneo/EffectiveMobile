@@ -9,9 +9,9 @@ import {
 } from '@angular/core';
 import {AuthorizationService, IAuthorizationCredentials} from "../../../../shared/services/authorization.service";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
-import {Router, RouterState} from "@angular/router";
+import {ActivatedRoute, ActivatedRouteSnapshot, Router, RouterState} from "@angular/router";
 import {MyValidatorsService} from "../../../../shared/services/my-validators.service";
-import {merge} from "rxjs";
+import {combineLatest, filter, merge, pairwise} from "rxjs";
 import {takeUntilDestroyed} from "@angular/core/rxjs-interop";
 
 @Component({
@@ -26,6 +26,7 @@ export class RegistrationComponent implements OnInit{
     private authS: AuthorizationService,
     private validatorS: MyValidatorsService,
     private destroyRef: DestroyRef,
+    private route: ActivatedRoute,
     private router: Router
   ) {}
 
@@ -40,23 +41,33 @@ export class RegistrationComponent implements OnInit{
   });
 
   ngOnInit(): void {
-    // cannot add sameValuesControl before initialisation of other controls
-    this.form.controls['password'].addValidators(this.validatorS.sameValues(this.form.controls['repeatPassword']));
-    this.form.controls['repeatPassword'].addValidators(this.validatorS.sameValues(this.form.controls['password']));
-    this.form.updateValueAndValidity();
-    merge(
+    // asyncValidators only work with finite observables, so I've made a custom realisation
+    combineLatest([
       this.form.controls['password'].valueChanges,
       this.form.controls['repeatPassword'].valueChanges
+    ]).pipe(
+      filter(() => !!this.form.controls['password'].value && !!this.form.controls['repeatPassword'].value)
     )
-      .pipe(
-        takeUntilDestroyed(this.destroyRef),
-      )
-      .subscribe(() => {
-      });
+      .subscribe(([fCurrent, sCurrent]) => {
+        if (fCurrent !== sCurrent) {
+          this.form.controls['password'].setErrors({...this.form.controls['password'].errors, mismatchedPasswords: true});
+          this.form.controls['repeatPassword'].setErrors({...this.form.controls['repeatPassword'].errors, mismatchedPasswords: true});
+        } else {
+          const fNewErrors = {...this.form.controls['password'].errors};
+          if (this.form.controls['password'].hasError('mismatchedPasswords')) { delete fNewErrors['mismatchedPasswords']; }
+          const sNewErrors = {...this.form.controls['repeatPassword'].errors};
+          if (this.form.controls['repeatPassword'].hasError('mismatchedPasswords')) { delete sNewErrors['mismatchedPasswords']; }
+          this.form.controls['password'].setErrors(Object.keys(fNewErrors).length ? fNewErrors : null);
+          this.form.controls['repeatPassword'].setErrors(Object.keys(sNewErrors).length ? sNewErrors : null);
+          this.form.updateValueAndValidity();
+        }
+      })
+    // this.form.updateValueAndValidity();
   }
 
   protected registrate() {
     this.authS.registrate({login: this.form.controls['login'].value as string, password: this.form.controls['password'].value as string});
-    this.router.navigate(['../', 'authorization', 'login']);
+    console.log(this.route.snapshot.url)
+    this.router.navigate(['../', 'login'], {relativeTo: this.route});
   }
 }
