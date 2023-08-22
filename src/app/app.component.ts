@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import {PreviousRouteService} from "./shared/services/previous-route.service";
 import {AuthorizationService} from "./shared/services/authorization.service";
 import {Router} from "@angular/router";
+import {TranslateService} from "@ngx-translate/core";
 
 @Component({
   selector: 'app-root',
@@ -11,9 +12,12 @@ import {Router} from "@angular/router";
 export class AppComponent {
   constructor(
     private previousRouteS: PreviousRouteService,
+    private translateS: TranslateService,
     private authS: AuthorizationService,
     private router: Router
-  ) {}
+  ) {
+    translateS.addLangs(['en', 'ru']);
+  }
 
   protected isAuthorized$ = this.authS.isAuthorized$;
 

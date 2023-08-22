@@ -10,6 +10,7 @@ import {ErrorTextComponent} from "../../shared/components/error-text/error-text.
 import {MatButtonModule} from "@angular/material/button";
 import {MatIconModule} from "@angular/material/icon";
 import {NgLetDirective} from "../../shared/directives/ng-let.directive";
+import {TranslateModule} from "@ngx-translate/core";
 
 const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'login'},
@@ -22,16 +23,17 @@ const routes: Routes = [
     LoginComponent,
     RegistrationComponent
   ],
-  imports: [
-    CommonModule,
-    ReactiveFormsModule,
-    MatFormFieldModule,
-    MatInputModule,
-    RouterModule.forChild(routes),
-    ErrorTextComponent,
-    MatButtonModule,
-    MatIconModule,
-    NgLetDirective
-  ]
+    imports: [
+        CommonModule,
+        ReactiveFormsModule,
+        MatFormFieldModule,
+        MatInputModule,
+        RouterModule.forChild(routes),
+        ErrorTextComponent,
+        MatButtonModule,
+        MatIconModule,
+        NgLetDirective,
+        TranslateModule
+    ]
 })
 export class AuthorizationModule { }

@@ -3,7 +3,7 @@
   <form class="form" [formGroup]="form">
     <mat-form-field [appearance]="'outline'">
       <mat-label>
-        Логин
+        {{'form.controls.login' | translate}}
       </mat-label>
       <input matInput [formControlName]="'login'">
       <app-error-text
