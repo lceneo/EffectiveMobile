@@ -27,6 +27,7 @@
     >
       <button
         mat-icon-button
+        [matTooltip]="'tooltips.previousPage' | translate"
         (click)="changePage(currentPage - 1)"
         [disabled] = 'currentPage === 1'
       >
@@ -34,6 +35,7 @@
       </button>
       <p>{{currentPage}}</p>
       <button mat-icon-button
+       [matTooltip]="'tooltips.nextPage' | translate"
        (click)="changePage(currentPage + 1)"
       >
         <mat-icon>keyboard_arrow_right</mat-icon>

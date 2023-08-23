@@ -3,6 +3,16 @@
   margin: 0 auto;
 }
 
+.wrapper:has(.err){
+  display: flex;
+  height: 70vh;
+  justify-content: center;
+  align-items: center;
+  h2{
+    font-size: 24px;
+  }
+}
+
 :host ::ng-deep{
   .mat-mdc-card-content, .mat-expansion-panel-body {
     word-wrap: break-word;

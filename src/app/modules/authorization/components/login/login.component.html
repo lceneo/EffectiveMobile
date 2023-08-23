@@ -13,7 +13,7 @@
     </mat-form-field>
     <mat-form-field [appearance]="'outline'">
       <mat-label>
-        Пароль
+        {{'form.controls.password' | translate}}
       </mat-label>
       <input
         matInput
@@ -23,6 +23,7 @@
       <button
         mat-icon-button
         type="button"
+        [matTooltip]="'tooltips.showPass' | translate"
         *ngLet="(passwordInput.type === 'text' ? 'password' : 'text') as alternativePassVisibility"
         (click)="passwordInput.type = alternativePassVisibility"
       >
@@ -40,7 +41,7 @@
       type="submit"
       [disabled] = "!form.touched || form.invalid"
       (click) = "login()"
-    >Войти</button>
-    <a class="form__registration" routerLink="../registration"> Регистрация </a>
+    >{{'links.signIn' | translate}}</button>
+    <a class="form__registration" routerLink="../registration"> {{'links.registration' | translate}} </a>
   </form>
 </div>

@@ -1,0 +1,21 @@
+@use '@angular/material' as mat;
+
+@mixin mat-menu($theme){
+.mat-mdc-menu-content {
+  padding: 8px !important;
+
+  .mat-mdc-menu-item {
+    @if(map-get($theme, is-dark)) {
+      background-color: rgb(33, 35, 49) !important;
+    }
+    @else {
+      background-color: rgb(230, 232, 243) !important;
+    }
+
+    &:first-child {
+      margin-bottom: 5px !important
+    }
+  }
+}
+
+}

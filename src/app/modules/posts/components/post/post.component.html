@@ -1,6 +1,8 @@
 <button
   mat-icon-button
-  (click) = "returnToListPage()">
+  (click) = "returnToListPage()"
+  [matTooltip]="'tooltips.backToList' | translate"
+>
   <mat-icon>arrow_back</mat-icon>
 </button>
 
@@ -32,6 +34,6 @@
   </section>
 
   <ng-template #postNotFoundTempalte>
-    <p>{{'error.postNotFound'}}</p>
+    <h2 class="err">{{'errors.postNotFound' | translate}}</h2>
   </ng-template>
 </div>

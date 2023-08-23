@@ -11,6 +11,8 @@ import {MatCardModule} from "@angular/material/card";
 import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
 import {getPostResolver} from "../../shared/resolvers";
 import {MatExpansionModule} from "@angular/material/expansion";
+import {MatTooltipModule} from "@angular/material/tooltip";
+import {TranslateModule} from "@ngx-translate/core";
 
 const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'posts' },
@@ -34,7 +36,9 @@ const routes: Routes = [
     MatCardModule,
     NgOptimizedImage,
     MatProgressSpinnerModule,
-    MatExpansionModule
+    MatExpansionModule,
+    MatTooltipModule,
+    TranslateModule
   ]
 })
 export class PostsModule { }

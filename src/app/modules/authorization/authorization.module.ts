@@ -11,6 +11,7 @@ import {MatButtonModule} from "@angular/material/button";
 import {MatIconModule} from "@angular/material/icon";
 import {NgLetDirective} from "../../shared/directives/ng-let.directive";
 import {TranslateModule} from "@ngx-translate/core";
+import {MatTooltipModule} from "@angular/material/tooltip";
 
 const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'login'},
@@ -33,7 +34,8 @@ const routes: Routes = [
         MatButtonModule,
         MatIconModule,
         NgLetDirective,
-        TranslateModule
+        TranslateModule,
+        MatTooltipModule
     ]
 })
 export class AuthorizationModule { }

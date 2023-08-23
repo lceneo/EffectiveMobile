@@ -6,7 +6,8 @@ const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'authorization'},
   { path: 'authorization', loadChildren: () => import('./modules/authorization/authorization.module').then(f => f.AuthorizationModule),
     canActivate: [authGuard], canActivateChild: [authGuard] },
-  { path: 'main', loadChildren: () => import('./modules/posts/posts.module').then(f => f.PostsModule), canActivate: [authGuard], canActivateChild: [authGuard] }
+  { path: 'main', loadChildren: () => import('./modules/posts/posts.module').then(f => f.PostsModule), canActivate: [authGuard], canActivateChild: [authGuard] },
+  { path: '**', loadComponent: () => import('./shared/components/not-found/not-found.component').then(f => f.NotFoundComponent)}
 ];
 
 @NgModule({

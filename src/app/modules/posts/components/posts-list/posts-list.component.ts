@@ -2,6 +2,7 @@ import {ChangeDetectionStrategy, Component, OnInit} from '@angular/core';
 import {IPost, PostsService} from "../../services/posts.service";
 import {ActivatedRoute, Router} from "@angular/router";
 import {Observable} from "rxjs";
+import {takeUntilDestroyed} from "@angular/core/rxjs-interop";
 
 @Component({
   selector: 'app-posts-list',
@@ -15,7 +16,11 @@ export class PostsListComponent{
     private route: ActivatedRoute,
     private router: Router
   ) {
-    this.router.routerState.root.queryParams.subscribe(params => {
+    this.router.routerState.root.queryParams
+      .pipe(
+        takeUntilDestroyed()
+      )
+      .subscribe(params => {
       this.currentPage = params['page'] ? + params['page'] : 1;
     })
   }

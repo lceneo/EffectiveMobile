@@ -3,7 +3,7 @@
   <form class="form" [formGroup]="form">
     <mat-form-field [appearance]="'outline'">
       <mat-label>
-        Логин
+        {{'form.controls.login' | translate}}
       </mat-label>
       <input matInput [formControlName]="'login'">
       <app-error-text
@@ -12,8 +12,8 @@
       ></app-error-text>
     </mat-form-field>
 
-    <ng-container *ngTemplateOutlet="passwordTemplate; context: { $implicit: form.controls['password'], label: 'form.password'}"></ng-container>
-    <ng-container *ngTemplateOutlet="passwordTemplate; context: { $implicit: form.controls['repeatPassword'], label:'form.repeatPassword'}"></ng-container>
+    <ng-container *ngTemplateOutlet="passwordTemplate; context: { $implicit: form.controls['password'], label: 'form.controls.password'}"></ng-container>
+    <ng-container *ngTemplateOutlet="passwordTemplate; context: { $implicit: form.controls['repeatPassword'], label:'form.controls.repeatPassword'}"></ng-container>
 
     <button
       mat-flat-button
@@ -21,22 +21,22 @@
       type="submit"
       [disabled] = "!form.touched || form.invalid"
       (click) = "registrate()"
-    >Зарегистрироваться</button>
-    <a class="form__registration" routerLink="../login"> Войти </a>
+    >{{'links.signUp' | translate}}</button>
+    <a class="form__registration" routerLink="../login">{{'links.signIn' | translate}}</a>
   </form>
 </div>
 
 <ng-template #passwordTemplate let-control let-label = "label">
   <mat-form-field [appearance]="'outline'">
     <mat-label>
-      {{label}}
+      {{label | translate}}
     </mat-label>
     <input
       matInput
       [formControl]="control"
     >
     <app-error-text
-      *ngIf = "form.invalid && !!control.value && control.errors"
+      *ngIf = "form.invalid && (!!control.value || control.touched) && control.errors"
       [errors]="control.errors"
     ></app-error-text>
   </mat-form-field>

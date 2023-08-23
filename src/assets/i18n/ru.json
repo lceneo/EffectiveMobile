@@ -1,7 +1,47 @@
 {
   "form": {
     "controls": {
-      "login": "Логин"
+      "login": "Логин",
+      "password": "Пароль",
+      "repeatPassword": "Повторите пароль"
     }
+  },
+  "links": {
+    "registration": "Регистрация",
+    "signIn": "Войти",
+    "signUp": "Зарегистрироваться"
+  },
+  "errors": {
+    "required": "Обязательное поле",
+    "minLength": "Минимальная длина - {{requiredLength}}, текущая - {{actualLength}}",
+    "maxLength": "Максимальная длина - {{requiredLength}}, текущая - {{actualLength}}",
+    "pattern": "Некорретный формат. Должен соответствовать {{requiredPattern}}",
+    "mismatchedPasswords": "Пароли не совпадают",
+    "existingAccount": "Аккаунт с таким логином уже существует",
+    "accountNotFound": "Аккаунт не найден",
+    "postNotFound": "Пост не найден"
+  },
+  "nav": {
+    "language": {
+      "name": "Язык",
+      "ru": "Русский",
+      "en": "Английский"
+    },
+    "theme": {
+      "dark": "Тёмная тема"
+    }
+  },
+  "notFoundComponent": {
+    "title": "Страница не найдена",
+    "content": "К сожалению, по данному адресу ещё ничего нет",
+    "returnToMain": "Вернуться на главную"
+  },
+  "tooltips": {
+    "showPass": "Скрыть/показать пароль",
+    "settings": "Настройки",
+    "signOut": "Выйти",
+    "nextPage": "Следующая страница",
+    "previousPage": "Предыдущая страница",
+    "backToList": "На страницу постов"
   }
 }

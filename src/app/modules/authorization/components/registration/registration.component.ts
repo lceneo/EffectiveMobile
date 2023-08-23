@@ -1,17 +1,14 @@
 import {
   ChangeDetectionStrategy,
-  ChangeDetectorRef,
   Component,
   DestroyRef,
   OnInit,
-  QueryList,
-  ViewChildren
 } from '@angular/core';
-import {AuthorizationService, IAuthorizationCredentials} from "../../../../shared/services/authorization.service";
+import {AuthorizationService} from "../../../../shared/services/authorization.service";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
-import {ActivatedRoute, ActivatedRouteSnapshot, Router, RouterState} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import {MyValidatorsService} from "../../../../shared/services/my-validators.service";
-import {combineLatest, filter, merge, pairwise} from "rxjs";
+import {combineLatest, filter} from "rxjs";
 import {takeUntilDestroyed} from "@angular/core/rxjs-interop";
 
 @Component({
@@ -46,7 +43,8 @@ export class RegistrationComponent implements OnInit{
       this.form.controls['password'].valueChanges,
       this.form.controls['repeatPassword'].valueChanges
     ]).pipe(
-      filter(() => !!this.form.controls['password'].value && !!this.form.controls['repeatPassword'].value)
+      filter(() => !!this.form.controls['password'].value && !!this.form.controls['repeatPassword'].value),
+      takeUntilDestroyed(this.destroyRef)
     )
       .subscribe(([fCurrent, sCurrent]) => {
         if (fCurrent !== sCurrent) {
@@ -67,7 +65,6 @@ export class RegistrationComponent implements OnInit{
 
   protected registrate() {
     this.authS.registrate({login: this.form.controls['login'].value as string, password: this.form.controls['password'].value as string});
-    console.log(this.route.snapshot.url)
     this.router.navigate(['../', 'login'], {relativeTo: this.route});
   }
 }

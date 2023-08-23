@@ -1,0 +1,47 @@
+{
+  "form": {
+    "controls": {
+      "login": "Login",
+      "password": "Password",
+      "repeatPassword": "Repeat your password"
+    }
+  },
+  "links": {
+    "registration": "Registration",
+    "signIn": "Enter",
+    "signUp": "Sign up"
+  },
+  "errors": {
+    "required": "Required field",
+    "minLength": "Minimal length - {{requiredLength}}, current - {{actualLength}}",
+    "maxLength": "Max length - {{requiredLength}}, current - {{actualLength}}",
+    "pattern": "Incorrect format. Must match {{requiredPattern}}",
+    "mismatchedPasswords": "Passwords differ",
+    "existingAccount": "Account with same login already exists",
+    "accountNotFound": "Account not found"
+  },
+  "nav": {
+    "language": {
+      "name": "language",
+      "ru": "Russian",
+      "en": "English"
+    },
+    "theme": {
+      "dark": "Dark theme",
+      "postNotFound": "Post not found"
+    }
+  },
+  "notFoundComponent": {
+    "title": "Page not found",
+    "content": "Unfortunately, there are no content on specified page",
+    "returnToMain": "Return to the main page"
+  },
+  "tooltips": {
+    "showPass": "Show/hide password",
+    "settings": "Settings",
+    "signOut": "Sign out",
+    "nextPage": "Next page",
+    "previousPage": "Previous page",
+    "backToList": "To the posts list"
+  }
+}

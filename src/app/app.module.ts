@@ -14,7 +14,10 @@ import {IconsModule} from "./modules/icons/icons.module";
 import {MatMenuModule} from "@angular/material/menu";
 import {TranslateLoader, TranslateModule} from "@ngx-translate/core";
 import {TranslateHttpLoader} from "@ngx-translate/http-loader";
-
+import {NotFoundComponent} from "./shared/components/not-found/not-found.component";
+import {MatTooltipModule} from "@angular/material/tooltip";
+import {MatSlideToggleModule} from "@angular/material/slide-toggle";
+import {FormsModule} from "@angular/forms";
 function httpTraslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http);
 }
@@ -33,6 +36,7 @@ function httpTraslateLoader(http: HttpClient) {
     MatDividerModule,
     IconsModule,
     MatMenuModule,
+    NotFoundComponent,
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,
@@ -40,11 +44,15 @@ function httpTraslateLoader(http: HttpClient) {
         deps: [HttpClient]
       },
       defaultLanguage: 'ru'
-    })
+    }),
+    MatTooltipModule,
+    MatSlideToggleModule,
+    FormsModule
   ],
   providers: [
     {provide: ErrorHandler, useClass: CustomErrorHandlerService}
   ],
+  exports: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

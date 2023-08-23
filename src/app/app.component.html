@@ -1,13 +1,21 @@
 
 <mat-divider></mat-divider>
 <section class="toolbar">
-  <button mat-icon-button
+  <button
+  mat-icon-button
+  [matTooltip]="'tooltips.settings' | translate"
   [matMenuTriggerFor]="settingsMenu">
     <mat-icon
     [svgIcon]="'more-alt'"></mat-icon>
   </button>
+  <mat-divider [vertical] = "true"></mat-divider>
   <nav class="nav">
-    <button *ngIf="isAuthorized$ | async" mat-icon-button class="nav__link" (click)="unauthorize()">
+    <button
+      *ngIf="isAuthorized$ | async"
+      mat-icon-button class="nav__link"
+      (click)="unauthorize()"
+      [matTooltip]="'tooltips.signOut' | translate"
+    >
       <mat-icon>exit_to_app</mat-icon>
     </button>
   </nav>
@@ -17,13 +25,21 @@
 
 <mat-menu #settingsMenu>
   <ng-template matMenuContent>
-    <button mat-menu-item [matMenuTriggerFor]="languageMenu">language</button>
+    <button mat-menu-item [matMenuTriggerFor]="languageMenu">{{'nav.language.name' | translate}}</button>
+    <button mat-menu-item>
+      <mat-slide-toggle
+        [checked] = "currentTheme === 'dark'"
+        (change)="changeTheme()"
+        [labelPosition]="'before'"
+        (click)= "$event.stopPropagation();"
+        [color]="'primary'">{{'nav.theme.dark' | translate}}</mat-slide-toggle>
+    </button>
   </ng-template>
 </mat-menu>
 
 <mat-menu #languageMenu>
   <ng-template matMenuContent>
-    <button mat-menu-item>ru</button>
-    <button mat-menu-item>en</button>
+    <button (click) = "changeLanguage('ru')" mat-menu-item>{{'nav.language.ru' | translate}}</button>
+    <button (click) = "changeLanguage('en')" mat-menu-item>{{'nav.language.en' | translate}}</button>
   </ng-template>
 </mat-menu>
