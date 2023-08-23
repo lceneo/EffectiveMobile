@@ -1,10 +1,15 @@
 
 <div class="form__wrapper">
+  <img class="logo" src = "/assets/img/logo.png" width="200px" height="200px">
   <form class="form" [formGroup]="form">
     <mat-form-field [appearance]="'outline'">
       <mat-label>
         {{'form.controls.login' | translate}}
       </mat-label>
+      <mat-icon
+        class="icon"
+        svgIcon="profile"
+      ></mat-icon>
       <input matInput [formControlName]="'login'">
       <app-error-text
         *ngIf = "form.invalid && form.controls['login'].touched && form.controls['login'].errors"
@@ -12,6 +17,10 @@
       ></app-error-text>
     </mat-form-field>
     <mat-form-field [appearance]="'outline'">
+      <mat-icon
+        class="icon"
+        svgIcon="lock"
+      ></mat-icon>
       <mat-label>
         {{'form.controls.password' | translate}}
       </mat-label>

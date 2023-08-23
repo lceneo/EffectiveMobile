@@ -1,7 +1,12 @@
 
 <div class="form__wrapper">
+  <img class="logo" src = "/assets/img/logo.png" width="200px" height="200px">
   <form class="form" [formGroup]="form">
     <mat-form-field [appearance]="'outline'">
+      <mat-icon
+        class="icon"
+        svgIcon="profile"
+      ></mat-icon>
       <mat-label>
         {{'form.controls.login' | translate}}
       </mat-label>
@@ -28,6 +33,10 @@
 
 <ng-template #passwordTemplate let-control let-label = "label">
   <mat-form-field [appearance]="'outline'">
+    <mat-icon
+      class="icon"
+      svgIcon="lock"
+    ></mat-icon>
     <mat-label>
       {{label | translate}}
     </mat-label>

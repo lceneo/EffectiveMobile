@@ -4,7 +4,9 @@
   <button
   mat-icon-button
   [matTooltip]="'tooltips.settings' | translate"
-  [matMenuTriggerFor]="settingsMenu">
+  [matMenuTriggerFor]="settingsMenu"
+  [matMenuTriggerData] = "{selectedLang: currentLang}"
+  >
     <mat-icon
     [svgIcon]="'more-alt'"></mat-icon>
   </button>
@@ -24,14 +26,20 @@
 <router-outlet></router-outlet>
 
 <mat-menu #settingsMenu>
-  <ng-template matMenuContent>
-    <button mat-menu-item [matMenuTriggerFor]="languageMenu">{{'nav.language.name' | translate}}</button>
-    <button mat-menu-item>
+  <ng-template matMenuContent let-selectedLang = "selectedLang">
+    <button mat-menu-item [matMenuTriggerFor]="languageMenu">
+      <mat-icon
+        class="savedLang"
+        [svgIcon]="selectedLang"></mat-icon>
+      <span style="font-size: 14px">{{'nav.language.name' | translate}}</span>
+      </button>
+    <button
+      (click)= "$event.stopPropagation();"
+      mat-menu-item>
       <mat-slide-toggle
         [checked] = "currentTheme === 'dark'"
         (change)="changeTheme()"
         [labelPosition]="'before'"
-        (click)= "$event.stopPropagation();"
         [color]="'primary'">{{'nav.theme.dark' | translate}}</mat-slide-toggle>
     </button>
   </ng-template>
@@ -39,7 +47,11 @@
 
 <mat-menu #languageMenu>
   <ng-template matMenuContent>
-    <button (click) = "changeLanguage('ru')" mat-menu-item>{{'nav.language.ru' | translate}}</button>
-    <button (click) = "changeLanguage('en')" mat-menu-item>{{'nav.language.en' | translate}}</button>
+    <button class="btn" (click) = "changeLanguage('ru')" mat-menu-item>
+      <mat-icon class="langSelect" [svgIcon]="'ru'"></mat-icon>
+    </button>
+    <button class="btn" (click) = "changeLanguage('en')" mat-menu-item>
+      <mat-icon class="langSelect" [svgIcon]="'en'"></mat-icon>
+    </button>
   </ng-template>
 </mat-menu>

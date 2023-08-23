@@ -20,6 +20,12 @@
         top: 10%;
         right: 0;
       }
+      input {
+        margin-left: 10px;
+      }
+    }
+    .mdc-floating-label:not(.mdc-floating-label--float-above){
+      padding-left: 30px;
     }
   }
 }

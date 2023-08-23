@@ -17,6 +17,9 @@ export class AppComponent implements OnInit{
     private router: Router
   ) {
     translateS.addLangs(['en', 'ru']);
+    // no sense in unsubscribing cause this sub lives during whole app lifecycle
+    translateS.onLangChange
+      .subscribe(langEv => this.currentLang = langEv.lang as LangType);
     const savedLang = localStorage.getItem('saved-lang');
     if (savedLang) { translateS.use(savedLang) }
     else { translateS.use(translateS.defaultLang)}
@@ -29,6 +32,7 @@ export class AppComponent implements OnInit{
   }
 
   protected currentTheme!: ThemeType;
+  protected currentLang!: LangType;
   protected isAuthorized$ = this.authS.isAuthorized$;
 
   ngOnInit(): void {
@@ -51,8 +55,10 @@ export class AppComponent implements OnInit{
   }
 
   protected changeLanguage(language: string){
+    if (language === this.translateS.currentLang) { return; }
     this.translateS.use(language);
   }
 }
 
 type ThemeType = 'light' | 'dark';
+type LangType = 'ru' | 'en';

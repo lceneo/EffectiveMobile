@@ -1,7 +1,10 @@
 .form{
   &__wrapper {
     display: flex;
-    height: 80vh;
+    flex-direction: column;
+    padding-top: 12vh;
+    height: 100vh;
+    gap: 70px;
     justify-items: center;
     align-items: center;
     .form {
@@ -11,4 +14,16 @@
       }
     }
   }
+}
+
+.icon {
+  font-size: 25px;
+  width: 25px;
+  height: 25px;
+}
+
+.logo__wrapper {
+  width: 100vw;
+  display: flex;
+  justify-content: center;
 }

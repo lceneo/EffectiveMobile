@@ -4,7 +4,11 @@ import {DomSanitizer} from "@angular/platform-browser";
 import {MatIconRegistry} from "@angular/material/icon";
 
 const img = [
-  'more-alt'
+  'more-alt',
+  'ru',
+  'en',
+  'profile',
+  'lock'
 ]
 
 @NgModule({
