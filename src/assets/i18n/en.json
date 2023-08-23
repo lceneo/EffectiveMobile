@@ -43,5 +43,8 @@
     "nextPage": "Next page",
     "previousPage": "Previous page",
     "backToList": "To the posts list"
+  },
+  "snackBar": {
+    "close": "Close"
   }
 }
