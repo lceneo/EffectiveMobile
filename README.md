@@ -1,27 +1,77 @@
-# EffectiveMovileTest
+# EffectiveMobileApp
+Приложение представляет собой сервис, отображающий карточки с постами и предоставляющий детальную информацию о них.
+## Содержание
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.1.5.
+1. <a href = "#start">Как запустить проект?</a>
+2. <a href = "#stack">Stack-технологий</a>
+3. <a href = "#authorization">Страница логина/регистрации<a>
+4. <a href = "#main_page">Страница со списком карточек постов<a>
+5. <a href = "#info_page">Страница детальной информации</a>
+6. <a href = "#additional">Дополнительный функционал</a>
 
-## Development server
+<a name = start></a>
+## Как запустить проект?
+1-ый способ:
+  1. Перейти по ссылке https://effective-mobile-test.netlify.app/ (сайт выложен на хостинг)
+  
+2-ой способ:
+  1. Установить Angular (Открыть терминал и прописать npm install -g @angular/cli)
+  2. Скачать проект, открыть его и прописать в терминале npm install
+  3. Прописать в терминале npm start
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
 
-## Code scaffolding
+<a name = stack></a>  
+## Stack-технологий
+- Приложение написано на Angular
+- При написании кода использовались jsonplaceholder(для формирования самой карточки) и api.slingacademy.com для генерации фотографии для неё
+- Адаптивная вёрстка с использованием принципов БЭМ и Angular Material
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+<a name = authorization></a>  
+## Страница логина/регистрации
+В приложении реализован функционал авторизации/регистрации
+<br><br>
+![image](https://github.com/lceneo/EffectiveMobile/assets/94864786/f67c7801-daff-4a98-8a67-6b7186ad87ed)
+<br><br>
+![image](https://github.com/lceneo/EffectiveMobile/assets/94864786/1afcca22-3d6a-40f3-93f2-bc58d5826d18)
+<br><br>
+Присутствует система сохранения аккаунтов и статуса авторизации в localStorage
+<br><br>
+![image](https://github.com/lceneo/EffectiveMobile/assets/94864786/269f3dab-8c00-4cc8-8425-288e3b7721d0)
+<br><br>
+При этом можно регистрировать несколько аккаунтов с сохранением предыдущих. Присутствуют различные валидаторы (например, на совпадение паролей в полях "Пароль" и "Повторите пароль")
+<br><br>
+![image](https://github.com/lceneo/EffectiveMobile/assets/94864786/d967b6a3-cfbd-46aa-9188-830f3b5c6546)
 
-## Build
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
 
-## Running unit tests
+<a name = main_page></a>
+## Страница со списком карточек постов
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+### Список постов
+На данной странице выводятся, сформированные благодаря jsonplaceholder и api.slingacademy.com карточки постов. 
+<br><br>
+![image](https://github.com/lceneo/EffectiveMobile/assets/94864786/d979f3be-64b4-4cda-97a7-2a1ce8878fa2)
+<br><br>
 
-## Running end-to-end tests
+Тажке присутствует кастомная пагинация
+<br><br>
+![image](https://github.com/lceneo/EffectiveMobile/assets/94864786/ed04425c-5dbc-4bde-a254-9700487e4799)
+<br><br>
+Прошу обратить внимание на то, что загрузка постов реализовано лениво, т.е, например, мы не будем запрашивать посты с 11 по 20, пока не зайдём на вторую страницу(затем они будут кэшироваться и при дальнейшем заходе на вторую страницу запрашиваться не будут).Также реализован функционал генерации случайных постов: jsonPlaceholder имеет всего 100 постов, поэтому в случае несуществования заданной страницы внутри jsonplaceholder реализовал функционал генерации собственной (можно проверить зайдя на страницу 11 и дальше).
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
 
-## Further help
+<a name = info_page></a>
+## Страница детальной информации
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+При щелчке по любой карточке из списка происходит редирект на данную страницу.
+На ней указана информация о посте, в том числе JSON-представление поста. Щёлкнув по кнопке "На страницу постов" происходит редирект на страницу со списком всех карточек(с сохранением страницы, с которой был совершён переход).
+<br><br>
+![image](https://github.com/lceneo/EffectiveMobile/assets/94864786/74780f3c-b212-4b7e-a267-07fdfb8d64eb)
+<br><br>
+
+<a name = additional></a>
+## Дополнительный функционал
+- На сайте реализована тёмная тема и смена языка, зайти в настройки можно через иконку троеточия в шапке сайта
+<br><br>
+![image](https://github.com/lceneo/EffectiveMobile/assets/94864786/677305b8-9e5a-424f-9239-cd92d4cdce68)
+<br><br>
